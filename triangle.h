@@ -15,6 +15,7 @@ struct Triangle {
     double heronArea() const;
     bool onEdge(const Point& P) const;
     bool containsCross(const Point& P) const;
+    bool containsByArea(const Point& p) const;
 };
 
 double sideLengths(const Point& p1, const Point& p2);

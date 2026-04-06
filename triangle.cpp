@@ -38,6 +38,12 @@ static bool pointOnSegment(const Point& V1, const Point& V2, const Point& P) {
     return true;
 }
 
+bool Triangle::containsByArea(const Point& p) const{
+    return abs(Triangle{A, B, p}.gaussArea() + 
+        Triangle{B, C, p}.gaussArea() +
+        Triangle{A, C, p}.gaussArea() - gaussArea()) < 10e-12;
+}
+
 bool Triangle::onEdge(const Point& P) const {
     return pointOnSegment(A, B, P)
         || pointOnSegment(B, C, P)
@@ -70,10 +76,6 @@ void runTriangle() {
     cout << "  Vertex C (x y): ";
     cin >> tri.C.x >> tri.C.y;
 
-    cout << endl;
-    cout << "Area (Gauss / Shoelace): " << tri.gaussArea() << endl;
-    cout << "Area (Heron's formula):  " << tri.heronArea() << endl;
-
     int n;
     cout << "\nHow many points to check: ";
     cin >> n;
@@ -89,5 +91,12 @@ void runTriangle() {
             cout << "  --> Point is INSIDE the triangle." << endl;
         else
             cout << "  --> Point is OUTSIDE the triangle." << endl;
+
+        if (tri.onEdge(p))
+            cout << "  --> By area: Point is ON THE EDGE of the triangle." << endl;
+        else if (tri.containsByArea(p))
+            cout << "  --> By area: Point is INSIDE the triangle." << endl;
+        else
+            cout << "  --> By area: Point is OUTSIDE the triangle." << endl;
     }
 }
