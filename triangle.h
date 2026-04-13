@@ -12,7 +12,7 @@ struct Triangle {
     Point A, B, C;
 
     double gaussArea() const;
-    double heronArea() const;
+    double crossProductArea() const;
     bool onEdge(const Point& P) const;
     bool containsCross(const Point& P) const;
     bool containsByArea(const Point& p) const;

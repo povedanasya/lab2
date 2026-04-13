@@ -18,7 +18,7 @@ double Triangle::gaussArea() const {
     );
 }
 
-double Triangle::heronArea() const {
+double Triangle::crossProductArea() const {
     double abx = B.x - A.x;
     double aby = B.y - A.y;
     double acx = C.x - A.x;
@@ -39,7 +39,7 @@ static bool pointOnSegment(const Point& V1, const Point& V2, const Point& P) {
 }
 
 bool Triangle::containsByArea(const Point& p) const{
-    return abs(Triangle{A, B, p}.gaussArea() + 
+    return fabs(Triangle{A, B, p}.gaussArea() + 
         Triangle{B, C, p}.gaussArea() +
         Triangle{A, C, p}.gaussArea() - gaussArea()) < 10e-12;
 }
