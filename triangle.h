@@ -13,13 +13,13 @@ struct Triangle {
 
     double gaussArea() const;
     double crossProductArea() const;
+    bool isDegenerate() const; // Новий метод
     bool onEdge(const Point& P) const;
     bool containsCross(const Point& P) const;
     bool containsByArea(const Point& p) const;
 };
 
 double sideLengths(const Point& p1, const Point& p2);
-
 void runTriangle();
 
 #endif
